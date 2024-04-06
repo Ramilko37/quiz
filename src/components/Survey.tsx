@@ -2,43 +2,10 @@ import { VStack, Text, Flex, FlexProps, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { surveyData } from '../data'
 import { InputComponent } from './Input/Input'
-import { Formik, FormikHelpers, FormikValues, useFormik } from 'formik'
-import * as Yup from 'yup'
-
-export const EmailSchema = Yup.string().matches(
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  'Invalid email'
-)
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .trim()
-    .matches(/^\S+$/, 'Name must not be only whitespace')
-    .min(2, 'Name must be at least 2 characters long')
-    .required('Name is required'),
-  email: EmailSchema.required('Email is required'),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), undefined], 'Passwords must match')
-    .required('Confirm password is required'),
-})
+import { Formik, FormikHelpers, FormikValues } from 'formik'
 
 function Survey() {
   const [currentStep, setCurrentStep] = useState(1)
-
-  async function onSubmit(data: { name: string; surname: string }) {
-    console.log(data)
-  }
-
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      surname: '',
-      confirmPassword: '',
-    },
-    validationSchema: validationSchema,
-    validateOnChange: true,
-    onSubmit: onSubmit,
-  })
 
   const handleNext = () => {
     setCurrentStep(currentStep + 1)

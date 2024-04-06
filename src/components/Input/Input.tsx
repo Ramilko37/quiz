@@ -22,8 +22,9 @@ export const InputComponent = ({
   const [isFocused, setIsFocused] = useState(false)
   const [isInvalid, setIsInvalid] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    helpers.setValue(e.target.value)
+  const handleChange = (e: string) => {
+    console.log(field)
+    helpers.setValue(e)
     onChange && onChange(e)
   }
 
@@ -37,6 +38,7 @@ export const InputComponent = ({
   }
 
   const validateInput = (value: string) => {
+    handleChange(value)
     // If value is either empty or contains only numbers, consider it invalid
     setIsInvalid(value.trim() === '' || /^\d+$/.test(value))
   }

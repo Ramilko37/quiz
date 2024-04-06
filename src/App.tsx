@@ -1,6 +1,6 @@
 import './App.css'
 import Survey from './components/Survey'
-import { ChakraProvider, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 
 function App() {
   return (
