@@ -9,6 +9,7 @@ type SurveyDataType = {
       name: string
       text: string
       type: string
+      placeholder?: string
       value: string
       class: string
       readonly: number
@@ -37,6 +38,7 @@ export const surveyData: SurveyDataType = {
         name: 'name',
         text: 'First name',
         type: 'input',
+        placeholder: 'First name',
         value: '',
         class: '',
         readonly: 0,
@@ -48,6 +50,7 @@ export const surveyData: SurveyDataType = {
         name: 'name',
         text: 'Last name',
         type: 'input',
+        placeholder: 'Last name',
         value: '',
         class: '',
         readonly: 0,

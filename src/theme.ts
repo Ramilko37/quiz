@@ -2,6 +2,8 @@ import { extendTheme } from '@chakra-ui/react'
 import type { StyleFunctionProps } from '@chakra-ui/styled-system'
 import { InputStyle } from './components/Input/inputStyle'
 
+console.log(InputStyle, 64)
+
 const config = {
   initialColorMode: 'light',
   useSystemColorMode: false,
@@ -72,7 +74,7 @@ const theme = extendTheme({
     BgColor: '#091223',
     White700: '#A3A3A3',
     Orange: '#DD7C66',
-    Purple: '#8E44EC',
+    Purple: '#322C3B',
     Black: {
       1: '#141414',
       2: '#333',
