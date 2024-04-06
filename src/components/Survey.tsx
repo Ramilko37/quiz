@@ -1,5 +1,5 @@
-import { VStack, Text, Input, Flex, FlexProps, Button } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { VStack, Text, Flex, FlexProps, Button } from '@chakra-ui/react'
+import { useState } from 'react'
 import { surveyData } from '../data'
 import { InputComponent } from './Input/Input'
 import { Formik, FormikHelpers, FormikValues, useFormik } from 'formik'

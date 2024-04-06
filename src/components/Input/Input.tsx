@@ -1,6 +1,6 @@
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react'
 import { FormControl, FormErrorMessage, FormLabel, Input, InputProps } from '@chakra-ui/react'
-import { Formik, FormikHelpers, FormikValues, useField } from 'formik'
+import { useField } from 'formik'
 import { FaCross } from 'react-icons/fa'
 
 export interface InputComponentProps extends InputProps {
