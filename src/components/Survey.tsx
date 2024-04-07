@@ -18,7 +18,7 @@ function Survey() {
   const stepData = surveyData[currentStep as keyof typeof surveyData]
 
   return (
-    <Flex direction={'column'} gap={'60px'}>
+    <Flex maxW={'500px'} direction={'column'} gap={'60px'}>
       <Question title={stepData.title} text={stepData.text} />
       <Flex direction={'column'} gap={'30px'}>
         <Options options={stepData.options} />
@@ -53,18 +53,19 @@ function Options({ options, ...props }: IOptionsProps) {
           throw new Error('Function not implemented.')
         }}
       >
-        <InputComponent
-          variant={'primary'}
-          type="text"
-          name={option.name}
-          placeholder={option.placeholder}
-          onChange={() => {}}
-        />
+        {option.type === 'input' ? (
+          <InputComponent
+            variant={'primary'}
+            type="text"
+            name={option.name}
+            placeholder={option.name[0].toUpperCase() + option.name.slice(1)}
+            onChange={() => {}}
+          />
+        ) : (
+          <InputComponent variant={'primary'} type="checkbox" name={'Surname'} onChange={undefined} />
+        )}
       </Formik>
 
-      {/* {option.type === 'checkbox' && (
-        <Input variant={'primary'} type="checkbox" name={'Surname'} onChange={undefined} />
-      )} */}
       {/* Add other option types as necessary */}
     </>
   ))

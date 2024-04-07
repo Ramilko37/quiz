@@ -77,14 +77,14 @@ export const surveyData: SurveyDataType = {
     ],
   },
   2: {
-    title: 'Social Network Link',
-    text: 'You can provide a direct link to a specific post about yourself or an interview – something that enables a person to get to know you before the first meeting.',
-    url: '/survey/social',
+    title: 'What is your location?',
+    text: 'Share your location to connect with relevant professionals in your area, enhancing local networking opportunities.',
+    url: '/survey/location',
     options: [
       {
         id: 2,
         survey_question_id: 2,
-        name: 'social',
+        name: 'Location',
         text: 'Social Network Link',
         type: 'input',
         value: '',
