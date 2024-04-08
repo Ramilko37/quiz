@@ -1,6 +1,7 @@
 import { extendTheme } from '@chakra-ui/react'
 import type { StyleFunctionProps } from '@chakra-ui/styled-system'
 import { InputStyle } from './components/Input/inputStyle'
+import { ButtonStyle } from './components/Button/buttonStyle'
 
 console.log(InputStyle, 64)
 
@@ -69,6 +70,7 @@ const theme = extendTheme({
   breakpoints,
   components: {
     [InputStyle.key]: InputStyle.style,
+    [ButtonStyle.key]: ButtonStyle.style,
   },
   colors: {
     BgColor: '#091223',

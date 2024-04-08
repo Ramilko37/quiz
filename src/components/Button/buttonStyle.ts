@@ -4,25 +4,35 @@ export const Style = defineStyleConfig({
   baseStyle: {},
   variants: {
     primary: {
-      field: {
-        borderRadius: '20px',
-        backgroundColor: 'Purple',
-        color: 'White700',
-        fontSize: '18px',
-        fontWeight: 500,
-        lineHeight: '40px',
-        padding: '16px 12px',
+      borderRadius: '20px',
+      backgroundColor: '#C9715D',
+      color: '#FDFDFD',
+      fontSize: '16px',
+      fontWeight: 700,
+      lineHeight: '40px',
+      padding: '16px 12px',
+      _disabled: {
+        opacity: 0.6,
+      },
 
-        _placeholder: {
-          color: 'Gray.6',
-        },
-        _hover: {
-          bgColor: '#F7F7F7',
-          border: '2px solid Gray.3',
-        },
-        _invalid: {
-          border: '2px solid Pink',
-        },
+      _hover: {
+        bgColor: '#C9715D',
+      },
+    },
+    secondary: {
+      borderRadius: '10px',
+      backgroundColor: '#fff',
+      color: '#000',
+      textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      fontSize: '20px',
+      fontWeight: 700,
+      lineHeight: 'normal',
+      _disabled: {
+        opacity: 0.6,
+      },
+
+      _hover: {
+        bgColor: '#C9715D',
       },
     },
   },
@@ -31,7 +41,7 @@ export const Style = defineStyleConfig({
   },
 })
 
-export const InputStyle = {
-  key: 'Input',
+export const ButtonStyle = {
+  key: 'Button',
   style: Style,
 }

@@ -3,6 +3,7 @@ import './App.css'
 import Survey from './components/Survey'
 import { Flex } from '@chakra-ui/react'
 import { Welcome } from './views/Welcome'
+import { Onboarbing } from './views/Onboarbing'
 
 export enum PageState {
   Welcome,
@@ -13,7 +14,7 @@ export enum PageState {
 function App() {
   const [pageState, setPageState] = useState<PageState>(PageState.Welcome)
 
-  const handlePageState = (pageState: PageState) => {
+  const handlePageState = (pageState: PageState) => () => {
     setPageState(pageState)
   }
 
@@ -22,7 +23,7 @@ function App() {
       case PageState.Welcome:
         return <Welcome handlePageState={handlePageState} />
       case PageState.Onboarding:
-        return <Welcome handlePageState={handlePageState} />
+        return <Onboarbing handlePageState={handlePageState} />
       case PageState.Quiz:
         return <Survey />
     }
