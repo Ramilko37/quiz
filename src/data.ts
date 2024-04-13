@@ -1,4 +1,4 @@
-type SurveyDataType = {
+export type SurveyDataType = {
   [key: string]: {
     title: string
     text: string
@@ -14,6 +14,7 @@ type SurveyDataType = {
       class: string
       readonly: number
       created_at: string
+      icon: string | unknown
     }[]
     buttons: {
       id: number
@@ -43,11 +44,12 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: 'close',
       },
       {
         id: 2,
         survey_question_id: 1,
-        name: 'name',
+        name: 'surname',
         text: 'Last name',
         type: 'input',
         placeholder: 'Last name',
@@ -55,17 +57,18 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: 'close',
       },
     ],
     buttons: [
-      {
-        id: 1,
-        survey_question_id: 1,
-        text: 'Back',
-        class: 'btn btn-primary w-100 btn-next',
-        disabled: 1,
-        created_at: '0000-00-00 00:00:00',
-      },
+      // {
+      //   id: 1,
+      //   survey_question_id: 1,
+      //   text: 'Back',
+      //   class: 'btn btn-primary w-100 btn-next',
+      //   disabled: 1,
+      //   created_at: '0000-00-00 00:00:00',
+      // },
       {
         id: 2,
         survey_question_id: 1,
@@ -91,6 +94,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: 'find',
       },
     ],
     buttons: [
@@ -127,6 +131,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
     ],
     buttons: [
@@ -163,6 +168,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
     ],
     buttons: [
@@ -199,6 +205,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
       {
         id: 6,
@@ -210,6 +217,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
       {
         id: 7,
@@ -221,6 +229,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
       {
         id: 8,
@@ -232,6 +241,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
       {
         id: 9,
@@ -243,6 +253,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
       {
         id: 10,
@@ -254,6 +265,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
       {
         id: 11,
@@ -265,6 +277,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
     ],
     buttons: [
@@ -301,6 +314,7 @@ export const surveyData: SurveyDataType = {
         class: 'calendar',
         readonly: 1,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
     ],
     buttons: [
@@ -337,6 +351,7 @@ export const surveyData: SurveyDataType = {
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
+        icon: '',
       },
     ],
     buttons: [

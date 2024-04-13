@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 import Survey from './components/Survey'
-import { Flex } from '@chakra-ui/react'
+import { Flex, HStack, Link, Image, Text } from '@chakra-ui/react'
 import { Welcome } from './views/Welcome'
 import { Onboarbing } from './views/Onboarbing'
+
+import { IoChatboxEllipses } from 'react-icons/io5'
+import { Header } from './components/Header/Header'
+import { Footer } from './components/Footer/Footer'
 
 export enum PageState {
   Welcome,
@@ -30,8 +34,10 @@ function App() {
   }
 
   return (
-    <Flex w={'100%'} h={'100dvh'} background={'BgColor'} justify={'center'} alignItems={'center'}>
+    <Flex direction={'column'} w={'100%'} h={'100dvh'} background={'BgColor'} justify={'center'} alignItems={'center'}>
+      {pageState === PageState.Welcome && <Header />}
       {content()}
+      {pageState === PageState.Welcome && <Footer />}
     </Flex>
   )
 }

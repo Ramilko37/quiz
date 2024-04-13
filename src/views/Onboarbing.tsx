@@ -12,7 +12,7 @@ export const Onboarbing = ({ handlePageState }: IOnboarbingProps) => {
   return (
     <Flex
       w={'100%'}
-      h={'100%'}
+      h={'100dvh'}
       direction={'column'}
       justify={'space-between'}
       alignItems={'center'}
