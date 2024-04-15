@@ -1,8 +1,16 @@
-import { VStack, Text, Flex, FlexProps, Button } from '@chakra-ui/react'
+import { VStack, Text, Flex, FlexProps, Button, Select } from '@chakra-ui/react'
 import { useState } from 'react'
-import { surveyData } from '../data'
+import { languages, surveyData } from '../data'
 import { InputComponent } from './Input/Input'
-import { Formik, FormikHelpers, FormikValues } from 'formik'
+import { Field, Formik, FormikHelpers, FormikValues, FieldProps } from 'formik'
+import * as Yup from 'yup'
+import 'react-languages-select/css/react-languages-select.css'
+
+interface Option {
+  name: string
+  type: 'input' | 'checkbox' | string // Add other types as necessary
+  // Add additional fields if needed
+}
 
 function Survey() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -16,6 +24,10 @@ function Survey() {
   }
 
   const stepData = surveyData[currentStep as keyof typeof surveyData]
+  const initialValues = stepData.options.reduce((acc: any, option) => {
+    acc[option.name] = option.type === 'checkbox' ? false : ''
+    return acc
+  }, {})
 
   return (
     <Flex maxW={'500px'} direction={'column'} gap={'60px'}>
@@ -44,26 +56,97 @@ interface IOptionsProps extends FlexProps {
 }
 
 function Options({ options, ...props }: IOptionsProps) {
+  const [formData, setFormData] = useState({
+    name: '',
+    lastName: '',
+    location: '',
+  })
+
+  function createValidationSchema(options: Option[]) {
+    const schemaFields = options.reduce<Record<string, Yup.AnySchema>>((acc, option) => {
+      if (option.type === 'input') {
+        // Add more conditions based on specific name, type, etc.
+        acc[option.name] = Yup.string().required(`${option.name} is required`)
+      } else if (option.type === 'checkbox') {
+        // Assuming you want to ensure a checkbox is checked
+        acc[option.name] = Yup.boolean().oneOf([true], `Please check the ${option.name}`)
+      }
+      // Extend with other conditions as needed
+      return acc
+    }, {})
+
+    return Yup.object().shape(schemaFields)
+  }
+
+  const validationSchema = createValidationSchema(options)
+
   return options.map((option: any) => (
     <>
-      {/* Render your options based on type */}
       <Formik
-        initialValues={{}}
+        initialValues={{ name: '' }}
+        validationSchema={validationSchema}
         onSubmit={function (values: FormikValues, formikHelpers: FormikHelpers<FormikValues>): void | Promise<any> {
           throw new Error('Function not implemented.')
         }}
       >
-        {option.type === 'input' ? (
-          <InputComponent
-            variant={'primary'}
-            type="text"
-            name={option.name}
-            placeholder={option.name[0].toUpperCase() + option.name.slice(1)}
-            onChange={() => {}}
-          />
-        ) : (
-          <InputComponent variant={'primary'} type="checkbox" name={'Surname'} onChange={undefined} />
-        )}
+        <Field name={option.name} key={option.name}>
+          {({ field }: FieldProps) => (
+            <>
+              {option.type === 'select' && (
+                <Flex direction={'column'} gap={'30px'}>
+                  <Select
+                    bg={'#322C3B'}
+                    h={'64px'}
+                    color={'#fff'}
+                    fontSize={'18x'}
+                    borderRadius={'16px'}
+                    border={'2px solid'}
+                    style={{ height: '64px' }}
+                  >
+                    {languages.map(lang => (
+                      <option key={lang.code}>{lang.name}</option>
+                    ))}
+                  </Select>
+                  <Select
+                    bg={'#322C3B'}
+                    h={'64px'}
+                    color={'#fff'}
+                    fontSize={'18x'}
+                    borderRadius={'16px'}
+                    border={'2px solid'}
+                    style={{ height: '64px' }}
+                  >
+                    {languages.map(lang => (
+                      <option key={lang.code}>{lang.name}</option>
+                    ))}
+                  </Select>
+                  <Select
+                    bg={'#322C3B'}
+                    h={'64px'}
+                    color={'#fff'}
+                    fontSize={'18x'}
+                    borderRadius={'16px'}
+                    border={'2px solid'}
+                    style={{ height: '64px' }}
+                  >
+                    {languages.map(lang => (
+                      <option key={lang.code}>{lang.name}</option>
+                    ))}
+                  </Select>
+                </Flex>
+              )}
+              {option.type === ('checkbox' || 'input') && (
+                <InputComponent
+                  rightIcon={option.icon}
+                  variant={'primary'}
+                  type={option.type === 'checkbox' ? 'checkbox' : 'text'}
+                  {...field}
+                  placeholder={option.name[0].toUpperCase() + option.name.slice(1)}
+                />
+              )}
+            </>
+          )}
+        </Field>
       </Formik>
 
       {/* Add other option types as necessary */}

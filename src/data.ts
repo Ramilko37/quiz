@@ -15,6 +15,7 @@ export type SurveyDataType = {
       readonly: number
       created_at: string
       icon: string | unknown
+      selectOptions?: [string]
     }[]
     buttons: {
       id: number
@@ -26,6 +27,35 @@ export type SurveyDataType = {
     }[]
   }
 }
+
+export const languages = [
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Spanish' },
+  { code: 'fr', name: 'French' },
+  { code: 'de', name: 'German' },
+  { code: 'it', name: 'Italian' },
+  { code: 'pt', name: 'Portuguese' },
+  { code: 'ru', name: 'Russian' },
+  { code: 'ja', name: 'Japanese' },
+  { code: 'zh', name: 'Chinese' },
+  { code: 'ko', name: 'Korean' },
+  { code: 'ar', name: 'Arabic' },
+  { code: 'hi', name: 'Hindi' },
+  { code: 'tr', name: 'Turkish' },
+  { code: 'nl', name: 'Dutch' },
+  { code: 'pl', name: 'Polish' },
+  { code: 'sv', name: 'Swedish' },
+  { code: 'fi', name: 'Finnish' },
+  { code: 'no', name: 'Norwegian' },
+  { code: 'da', name: 'Danish' },
+  { code: 'el', name: 'Greek' },
+  { code: 'cs', name: 'Czech' },
+  { code: 'hu', name: 'Hungarian' },
+  { code: 'th', name: 'Thai' },
+  { code: 'he', name: 'Hebrew' },
+  { code: 'id', name: 'Indonesian' },
+  { code: 'ro', name: 'Romanian' },
+]
 
 export const surveyData: SurveyDataType = {
   1: {
@@ -117,8 +147,8 @@ export const surveyData: SurveyDataType = {
     ],
   },
   3: {
-    title: 'What is your current role and which company do you work for?',
-    text: '',
+    title: 'What are your preferred languages for communication?',
+    text: `This helps us match you with networking opportunities in languages you're most comfortable with.`,
     url: '/survey/role',
     options: [
       {
@@ -126,7 +156,7 @@ export const surveyData: SurveyDataType = {
         survey_question_id: 3,
         name: 'role',
         text: 'Your current role',
-        type: 'input',
+        type: 'select',
         value: '',
         class: '',
         readonly: 0,
@@ -154,8 +184,8 @@ export const surveyData: SurveyDataType = {
     ],
   },
   4: {
-    title: 'What are your work and non-work interests?',
-    text: 'List words separated by commas that can serve as conversation starters and lead to engaging discussions, for instance: hobbies, software, book titles, etc.',
+    title: 'What is your current seniority level within your professional field? ',
+    text: '',
     url: '/survey/interest',
     options: [
       {
@@ -163,7 +193,7 @@ export const surveyData: SurveyDataType = {
         survey_question_id: 4,
         name: 'interest',
         text: 'Interests',
-        type: 'input',
+        type: 'select',
         value: '',
         class: '',
         readonly: 0,

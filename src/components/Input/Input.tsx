@@ -1,16 +1,29 @@
 import React, { useState } from 'react'
-import { FormControl, FormErrorMessage, FormLabel, Input, InputProps } from '@chakra-ui/react'
+import {
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputProps,
+  InputRightElement,
+} from '@chakra-ui/react'
 import { useField } from 'formik'
 import { FaCross } from 'react-icons/fa'
+import { SlClose, SlMagnifier } from 'react-icons/sl'
+import { IoMdClose } from 'react-icons/io'
 
 export interface InputComponentProps extends InputProps {
   name: string
   onChange: any
+  rightIcon: any
 }
 
 export const InputComponent = ({
   name,
   placeholder,
+  rightIcon,
   onChange,
   margin,
   marginBottom,
@@ -43,7 +56,19 @@ export const InputComponent = ({
     setIsInvalid(value.trim() === '' || /^\d+$/.test(value))
   }
 
-  console.log(isInvalid, 49)
+  const rightIconElement = (rightIcon: any) => {
+    switch (rightIcon) {
+      case 'find': {
+        return <SlMagnifier size={'24px'} color="#A3A3A3" />
+      }
+      case 'close': {
+        return <IoMdClose size={'24px'} color="#A3A3A3" />
+      }
+    }
+  }
+
+  console.log(meta.error, 69)
+
   return (
     <FormControl
       margin={margin}
@@ -77,28 +102,30 @@ export const InputComponent = ({
       >
         {placeholder}
       </FormLabel>
-      <Input
-        id={name}
-        placeholder={placeholder}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => validateInput(e.target.value)}
-        onBlur={handleBlur}
-        type={type}
-        variant={'t4'}
-        bg={'#322C3B'}
-        p={'20px'}
-        h={'64px'}
-        color={'#fff'}
-        fontSize={'18x'}
-        borderRadius={'16px'}
-        border={isInvalid ? '2px solid #F54D3F' : '2px solid'}
-        _focusVisible={{
-          borderColor: isInvalid ? '#F54D3F' : '#0D8D67',
-        }}
-      />
-      <FormErrorMessage color={'Pink'}>
-        <FaCross />
-        {meta.error}
-      </FormErrorMessage>
+      <InputGroup>
+        <Input
+          id={name}
+          placeholder={placeholder}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => validateInput(e.target.value)}
+          onBlur={handleBlur}
+          type={type}
+          variant={'t4'}
+          bg={'#322C3B'}
+          p={'20px'}
+          h={'64px'}
+          color={'#fff'}
+          fontSize={'18x'}
+          borderRadius={'16px'}
+          border={isInvalid ? '2px solid #F54D3F' : '2px solid'}
+          _focusVisible={{
+            borderColor: isInvalid ? '#F54D3F' : '#0D8D67',
+          }}
+          alignItems={'center'}
+        />
+        <InputRightElement mt={'10px'} mr={'8px'} alignItems={'center'}>
+          {rightIconElement(rightIcon)}
+        </InputRightElement>
+      </InputGroup>
     </FormControl>
   )
 }
