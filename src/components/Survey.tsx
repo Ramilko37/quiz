@@ -31,7 +31,7 @@ function Survey() {
   }, {})
 
   return (
-    <Flex maxW={'500px'} direction={'column'} gap={'60px'}>
+    <Flex w={{ base: '70vw', md: '500px' }} direction={'column'} gap={'60px'}>
       <Question title={stepData.title} text={stepData.text} />
       <Flex direction={'column'} gap={'30px'}>
         <Options options={stepData.options} />
