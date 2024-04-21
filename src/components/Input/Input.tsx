@@ -1,18 +1,8 @@
-import React, { useState } from 'react'
-import {
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Input,
-  InputGroup,
-  InputProps,
-  InputRightElement,
-} from '@chakra-ui/react'
+import { FormControl, FormLabel, Input, InputGroup, InputProps, InputRightElement } from '@chakra-ui/react'
 import { useField } from 'formik'
-import { FaCross } from 'react-icons/fa'
-import { SlClose, SlMagnifier } from 'react-icons/sl'
+import React, { useState } from 'react'
 import { IoMdClose } from 'react-icons/io'
+import { SlMagnifier } from 'react-icons/sl'
 
 export interface InputComponentProps extends InputProps {
   name: string

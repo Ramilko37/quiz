@@ -7,6 +7,7 @@ export type SurveyDataType = {
       id: number
       survey_question_id: number
       name: string
+      title?: string
       text: string
       type: string
       placeholder?: string
@@ -55,6 +56,12 @@ export const languages = [
   { code: 'he', name: 'Hebrew' },
   { code: 'id', name: 'Indonesian' },
   { code: 'ro', name: 'Romanian' },
+]
+
+export const seniority = [
+  { id: 1, name: 'Junior' },
+  { id: 2, name: 'Middle' },
+  { id: 3, name: 'Senior' },
 ]
 
 export const surveyData: SurveyDataType = {
@@ -157,7 +164,7 @@ export const surveyData: SurveyDataType = {
         name: 'role',
         text: 'Your current role',
         type: 'select',
-        value: '',
+        value: 'languages',
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
@@ -194,7 +201,7 @@ export const surveyData: SurveyDataType = {
         name: 'interest',
         text: 'Interests',
         type: 'select',
-        value: '',
+        value: 'seniority',
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
@@ -229,7 +236,8 @@ export const surveyData: SurveyDataType = {
         id: 5,
         survey_question_id: 5,
         name: 'target',
-        text: 'Networking Opportunities - To expand my professional network within the FP&A community.',
+        title: '🌐\u00A0 Networking Opportunities',
+        text: 'To expand my professional network within the community',
         type: 'checkbox',
         value: '1',
         class: '',
@@ -241,21 +249,10 @@ export const surveyData: SurveyDataType = {
         id: 6,
         survey_question_id: 5,
         name: 'target',
-        text: 'Knowledge Sharing - To share and gain insights on best practices, challenges, and solutions in FP&A.',
+        title: '💡\u00A0 Knowledge Sharing',
+        text: 'To share and gain insights on best practices, challenges, and solutions in FP&A.',
         type: 'checkbox',
         value: '2',
-        class: '',
-        readonly: 0,
-        created_at: '0000-00-00 00:00:00',
-        icon: '',
-      },
-      {
-        id: 7,
-        survey_question_id: 5,
-        name: 'target',
-        text: 'Career Advancement - To learn about career advancement opportunities and skills required in the FP&A field.',
-        type: 'checkbox',
-        value: '3',
         class: '',
         readonly: 0,
         created_at: '0000-00-00 00:00:00',
@@ -265,6 +262,7 @@ export const surveyData: SurveyDataType = {
         id: 8,
         survey_question_id: 5,
         name: 'target',
+        title: '🚀\u00A0 Skill Development',
         text: 'Skill Development - To discover new tools, techniques, and methodologies in financial planning and analysis.',
         type: 'checkbox',
         value: '4',
@@ -277,7 +275,8 @@ export const surveyData: SurveyDataType = {
         id: 9,
         survey_question_id: 5,
         name: 'target',
-        text: 'Industry Trends - To stay updated on the latest trends and developments in the finance industry.',
+        title: '📊️\u00A0 Industry Trends T',
+        text: 'To stay updated on the latest trends and developments in the finance industry.',
         type: 'checkbox',
         value: '5',
         class: '',
@@ -289,7 +288,8 @@ export const surveyData: SurveyDataType = {
         id: 10,
         survey_question_id: 5,
         name: 'target',
-        text: 'Collaboration Projects - To find potential collaborators for upcoming projects or initiatives.',
+        title: '👥\u00A0 Collaboration Projects',
+        text: 'To find potential collaborators for upcoming projects or initiatives.',
         type: 'checkbox',
         value: '6',
         class: '',
@@ -301,7 +301,8 @@ export const surveyData: SurveyDataType = {
         id: 11,
         survey_question_id: 5,
         name: 'target',
-        text: 'Social Interaction - To enjoy social interactions with peers in a relaxed and informal setting.',
+        title: ' 🎉\u00A0 Social Interaction ',
+        text: 'To enjoy social interactions with peers in a relaxed and informal setting.',
         type: 'checkbox',
         value: '7',
         class: '',
@@ -339,7 +340,7 @@ export const surveyData: SurveyDataType = {
         survey_question_id: 6,
         name: 'birthday',
         text: 'Your birthday',
-        type: 'input',
+        type: 'date',
         value: '',
         class: 'calendar',
         readonly: 1,

@@ -1,10 +1,11 @@
-import { VStack, Text, Flex, FlexProps, Button, Select } from '@chakra-ui/react'
+import { Button, Flex, FlexProps, Input, Select, Text, VStack } from '@chakra-ui/react'
+import { Field, FieldProps, Formik, FormikHelpers, FormikValues } from 'formik'
 import { useState } from 'react'
-import { languages, surveyData } from '../data'
-import { InputComponent } from './Input/Input'
-import { Field, Formik, FormikHelpers, FormikValues, FieldProps } from 'formik'
-import * as Yup from 'yup'
 import 'react-languages-select/css/react-languages-select.css'
+import * as Yup from 'yup'
+import { languages, seniority, surveyData } from '../data'
+import { InputComponent } from './Input/Input'
+import { RadioInput } from './RadioInput/RadioInput'
 
 interface Option {
   name: string
@@ -90,62 +91,83 @@ function Options({ options, ...props }: IOptionsProps) {
         }}
       >
         <Field name={option.name} key={option.name}>
-          {({ field }: FieldProps) => (
-            <>
-              {option.type === 'select' && (
-                <Flex direction={'column'} gap={'30px'}>
-                  <Select
+          {({ field }: FieldProps) => {
+            switch (option.type) {
+              case 'input':
+                return (
+                  <InputComponent
+                    rightIcon={option.icon}
+                    variant={'primary'}
+                    type={'text'}
+                    {...field}
+                    placeholder={option.name[0].toUpperCase() + option.name.slice(1)}
+                  />
+                )
+              case 'checkbox':
+                return <RadioInput option={option} />
+              case 'select':
+                return (
+                  <Flex direction={'column'} gap={'30px'}>
+                    <Select
+                      bg={'#322C3B'}
+                      h={'64px'}
+                      color={'#fff'}
+                      fontSize={'18x'}
+                      borderRadius={'16px'}
+                      border={'2px solid'}
+                      style={{ height: '64px' }}
+                    >
+                      {option.value === 'languages'
+                        ? languages.map(lang => <option key={lang.name}>{lang.name}</option>)
+                        : seniority.map(sen => <option key={sen.name}>{sen.name}</option>)}
+                    </Select>
+                    <Select
+                      bg={'#322C3B'}
+                      h={'64px'}
+                      color={'#fff'}
+                      fontSize={'18x'}
+                      borderRadius={'16px'}
+                      border={'2px solid'}
+                      style={{ height: '64px' }}
+                      display={option.value === 'seniority' ? 'none' : 'block'}
+                    >
+                      {languages.map(lang => (
+                        <option key={lang.code}>{lang.name}</option>
+                      ))}
+                    </Select>
+                    <Select
+                      bg={'#322C3B'}
+                      h={'64px'}
+                      color={'#fff'}
+                      fontSize={'18x'}
+                      borderRadius={'16px'}
+                      border={'2px solid'}
+                      style={{ height: '64px' }}
+                      display={option.value === 'seniority' ? 'none' : 'block'}
+                    >
+                      {languages.map(lang => (
+                        <option key={lang.code}>{lang.name}</option>
+                      ))}
+                    </Select>
+                  </Flex>
+                )
+              case 'date':
+                return (
+                  <Input
+                    variant={'t4'}
                     bg={'#322C3B'}
+                    p={'20px'}
                     h={'64px'}
                     color={'#fff'}
                     fontSize={'18x'}
                     borderRadius={'16px'}
-                    border={'2px solid'}
-                    style={{ height: '64px' }}
-                  >
-                    {languages.map(lang => (
-                      <option key={lang.code}>{lang.name}</option>
-                    ))}
-                  </Select>
-                  <Select
-                    bg={'#322C3B'}
-                    h={'64px'}
-                    color={'#fff'}
-                    fontSize={'18x'}
-                    borderRadius={'16px'}
-                    border={'2px solid'}
-                    style={{ height: '64px' }}
-                  >
-                    {languages.map(lang => (
-                      <option key={lang.code}>{lang.name}</option>
-                    ))}
-                  </Select>
-                  <Select
-                    bg={'#322C3B'}
-                    h={'64px'}
-                    color={'#fff'}
-                    fontSize={'18x'}
-                    borderRadius={'16px'}
-                    border={'2px solid'}
-                    style={{ height: '64px' }}
-                  >
-                    {languages.map(lang => (
-                      <option key={lang.code}>{lang.name}</option>
-                    ))}
-                  </Select>
-                </Flex>
-              )}
-              {option.type === ('checkbox' || 'input') && (
-                <InputComponent
-                  rightIcon={option.icon}
-                  variant={'primary'}
-                  type={option.type === 'checkbox' ? 'checkbox' : 'text'}
-                  {...field}
-                  placeholder={option.name[0].toUpperCase() + option.name.slice(1)}
-                />
-              )}
-            </>
-          )}
+                    type={'date'}
+                    {...field}
+                    placeholder={option.name[0].toUpperCase() + option.name.slice(1)}
+                  />
+                )
+            }
+          }}
         </Field>
       </Formik>
 
