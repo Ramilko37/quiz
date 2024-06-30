@@ -72,7 +72,7 @@ export const AuthForm = ({ handlePageState }: ISignInForm) => {
     return () => {
       window.removeEventListener('keydown', keyDownListener)
     }
-  }, [formik])
+  }, [formik, keyDownListener])
 
   return (
     <FormikProvider value={formik}>

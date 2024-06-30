@@ -1,5 +1,4 @@
-import { Flex, HStack, Image, Text, useBreakpointValue } from '@chakra-ui/react'
-import { useState } from 'react'
+import { Flex, HStack, Image, Text } from '@chakra-ui/react'
 import { PageState } from 'src/App'
 import { AuthForm } from 'src/components/AuthForm/AuthForm'
 import QuizLogo from '../images/QuizLogo.svg'
@@ -17,9 +16,6 @@ interface LoginPageProps {
 }
 
 export const Auth = ({ initialScreen = ShowedForm.SignIn, handlePageState }: LoginPageProps) => {
-  const [showedForm, setShowedForm] = useState<ShowedForm>(initialScreen)
-  const isMobile = useBreakpointValue({ base: true, md: false })
-
   // const handleChangeForm = (newForm: ShowedForm) => () => {
   //   setShowedForm(newForm)
   // }
