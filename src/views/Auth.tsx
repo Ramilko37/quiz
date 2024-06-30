@@ -20,11 +20,11 @@ export const Auth = ({ initialScreen = ShowedForm.SignIn, handlePageState }: Log
   const [showedForm, setShowedForm] = useState<ShowedForm>(initialScreen)
   const isMobile = useBreakpointValue({ base: true, md: false })
 
-  const handleChangeForm = (newForm: ShowedForm) => () => {
-    setShowedForm(newForm)
-  }
+  // const handleChangeForm = (newForm: ShowedForm) => () => {
+  //   setShowedForm(newForm)
+  // }
 
-  const isImageComponentHidden = isMobile && showedForm === ShowedForm.ResetPassword
+  // const isImageComponentHidden = isMobile && showedForm === ShowedForm.ResetPassword
 
   return (
     <Flex

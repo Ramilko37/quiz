@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/no-children-prop */
-import { Button, Flex, Input, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, Input } from '@chakra-ui/react'
 import { FormikProvider, useFormik } from 'formik'
 import React from 'react'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
@@ -23,12 +23,11 @@ const signUpSchema = Yup.object().shape({
 })
 
 interface ISignInForm {
-  formType: 'signup' | 'signin'
+  formType?: 'signup' | 'signin'
   handlePageState: (pageState: PageState) => void
 }
 
-export const AuthForm = ({ formType, handlePageState }: ISignInForm) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+export const AuthForm = ({ handlePageState }: ISignInForm) => {
   const formik = useFormik({
     initialValues: {
       name: '',

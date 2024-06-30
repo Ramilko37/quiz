@@ -1,7 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { useState } from 'react'
 import './App.css'
-import Survey from './components/Survey'
 import { Onboarbing } from './views/Onboarbing'
 import { Welcome } from './views/Welcome'
 
@@ -31,8 +30,6 @@ function App() {
         return <Auth handlePageState={handlePageState} />
       case PageState.Onboarding:
         return <Onboarbing handlePageState={handlePageState} />
-      case PageState.Quiz:
-        return <Survey />
     }
   }
 
