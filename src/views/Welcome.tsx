@@ -1,6 +1,6 @@
-import { Flex, Heading, Button } from '@chakra-ui/react'
-import quizBgImage from '../images/reference1.webp'
+import { Button, Flex, Heading } from '@chakra-ui/react'
 import { PageState } from 'src/App'
+import quizBgImage from '../images/reference1.webp'
 
 interface IWelcomeProps {
   handlePageState: (pageState: PageState) => () => void

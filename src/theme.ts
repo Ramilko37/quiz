@@ -1,5 +1,4 @@
-import { extendTheme } from '@chakra-ui/react'
-import type { StyleFunctionProps } from '@chakra-ui/styled-system'
+import { StyleFunctionProps, extendTheme } from '@chakra-ui/react'
 import { ButtonStyle } from './components/Button/buttonStyle'
 import { InputStyle } from './components/Input/inputStyle'
 

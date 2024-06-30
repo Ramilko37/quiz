@@ -1,8 +1,7 @@
 import { Button, Flex, Image, Text } from '@chakra-ui/react'
+import { PageState } from 'src/App'
 import QuizLogo from '../images/QuizLogo.svg'
 import onboardingImg from '../images/onboardingImg.jpg'
-import React from 'react'
-import { PageState } from 'src/App'
 
 interface IOnboarbingProps {
   handlePageState: (pageState: PageState) => () => void
@@ -38,7 +37,7 @@ export const Onboarbing = ({ handlePageState }: IOnboarbingProps) => {
         </Text>{' '}
         and make your professional advancement a reality!
       </Text>
-      <Button onClick={handlePageState(PageState.Quiz)} w={'250px'} h={'65px'} variant={'secondary'}>
+      <Button onClick={handlePageState(PageState.Auth)} w={'250px'} h={'65px'} variant={'secondary'}>
         Let's go! 🚀
       </Button>
     </Flex>

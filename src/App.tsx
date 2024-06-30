@@ -1,22 +1,23 @@
+import { Flex } from '@chakra-ui/react'
 import { useState } from 'react'
 import './App.css'
 import Survey from './components/Survey'
-import { Flex, HStack, Link, Image, Text } from '@chakra-ui/react'
-import { Welcome } from './views/Welcome'
 import { Onboarbing } from './views/Onboarbing'
+import { Welcome } from './views/Welcome'
 
-import { IoChatboxEllipses } from 'react-icons/io5'
-import { Header } from './components/Header/Header'
 import { Footer } from './components/Footer/Footer'
+import { Header } from './components/Header/Header'
+import Auth from './views/Auth'
 
 export enum PageState {
   Welcome,
+  Auth,
   Onboarding,
   Quiz,
 }
 
 function App() {
-  const [pageState, setPageState] = useState<PageState>(PageState.Welcome)
+  const [pageState, setPageState] = useState<PageState>(PageState.Auth)
 
   const handlePageState = (pageState: PageState) => () => {
     setPageState(pageState)
@@ -26,6 +27,8 @@ function App() {
     switch (pageState) {
       case PageState.Welcome:
         return <Welcome handlePageState={handlePageState} />
+      case PageState.Auth:
+        return <Auth handlePageState={handlePageState} />
       case PageState.Onboarding:
         return <Onboarbing handlePageState={handlePageState} />
       case PageState.Quiz:

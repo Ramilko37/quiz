@@ -12,6 +12,7 @@ export const Style = defineStyleConfig({
         fontWeight: 500,
         lineHeight: '40px',
         padding: '16px 12px',
+        height: '64px',
 
         _placeholder: {
           color: 'Gray.6',

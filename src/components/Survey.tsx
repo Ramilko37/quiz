@@ -1,7 +1,6 @@
 import { Button, Flex, FlexProps, Input, Select, Text, VStack } from '@chakra-ui/react'
 import { Field, FieldProps, Formik, FormikHelpers, FormikValues } from 'formik'
 import { useState } from 'react'
-import 'react-languages-select/css/react-languages-select.css'
 import * as Yup from 'yup'
 import { languages, seniority, surveyData } from '../data'
 import { InputComponent } from './Input/Input'
