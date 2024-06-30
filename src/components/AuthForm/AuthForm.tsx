@@ -64,15 +64,15 @@ export const AuthForm = ({ handlePageState }: ISignInForm) => {
     const res = await ApiSignUp(data.email.trim(), data.password)
     console.log(res)
   }
-  const keyDownListener = (event: KeyboardEvent) => handleEnterKeyDown(event, formik)
 
   React.useEffect(() => {
+    const keyDownListener = (event: KeyboardEvent) => handleEnterKeyDown(event, formik)
     window.addEventListener('keydown', keyDownListener)
 
     return () => {
       window.removeEventListener('keydown', keyDownListener)
     }
-  }, [formik, keyDownListener])
+  }, [formik])
 
   return (
     <FormikProvider value={formik}>
