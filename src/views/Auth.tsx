@@ -13,9 +13,10 @@ export enum ShowedForm {
 interface LoginPageProps {
   initialScreen?: ShowedForm
   handlePageState: (pageState: PageState) => void
+  setAuthorised: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const Auth = ({ initialScreen = ShowedForm.SignIn, handlePageState }: LoginPageProps) => {
+export const Auth = ({ initialScreen = ShowedForm.SignIn, handlePageState, setAuthorised }: LoginPageProps) => {
   // const handleChangeForm = (newForm: ShowedForm) => () => {
   //   setShowedForm(newForm)
   // }
@@ -39,7 +40,7 @@ export const Auth = ({ initialScreen = ShowedForm.SignIn, handlePageState }: Log
       <Text fontWeight={600} fontSize={'20px'} color={'#fff'}>
         Join Networky, Expand Your Horizons!
       </Text>
-      <AuthForm formType={'signup'} handlePageState={handlePageState} />
+      <AuthForm formType={'signup'} handlePageState={handlePageState} setAuthorised={setAuthorised} />
     </Flex>
   )
 }

@@ -25,9 +25,10 @@ const signUpSchema = Yup.object().shape({
 interface ISignInForm {
   formType?: 'signup' | 'signin'
   handlePageState: (pageState: PageState) => void
+  setAuthorised: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const AuthForm = ({ handlePageState }: ISignInForm) => {
+export const AuthForm = ({ handlePageState, setAuthorised }: ISignInForm) => {
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -61,8 +62,11 @@ export const AuthForm = ({ handlePageState }: ISignInForm) => {
     //   ? await ApiSignUp(data.name, data.email.trim(), data.password)
     //   : await ApiSignIn(data.name, data.email.trim(), data.password)
     console.log('submit')
-    const res = await ApiSignUp(data.email.trim(), data.password)
-    console.log(res)
+    ApiSignUp(data.email.trim(), data.password).then(res => console.log(res, 64))
+    // ApiSignIn(data.email.trim(), data.password).then(() => {
+    //   setAuthorised(true)
+    //   handlePageState(PageState.Quiz)
+    // })
   }
 
   React.useEffect(() => {
@@ -99,7 +103,13 @@ export const AuthForm = ({ handlePageState }: ISignInForm) => {
       <Flex w={'100%'} direction={'column'} maxW={'500px'} gap={'16px'} align={'center'}>
         {/* <Input name={'name'} placeholder={'Name'} onChange={formik.handleChange} margin={'24px 0 10px'} /> */}
         <Input name={'email'} placeholder={'Email'} onChange={formik.handleChange} marginBottom={'10px'} />
-        <Input name={'password'} placeholder={'Create password'} onChange={formik.handleChange} marginBottom={'10px'} />
+        <Input
+          type={'password'}
+          name={'password'}
+          placeholder={'Create password'}
+          onChange={formik.handleChange}
+          marginBottom={'10px'}
+        />
         {/* <Input
           name={'confirmPassword'}
           placeholder={'Confirm Password'}

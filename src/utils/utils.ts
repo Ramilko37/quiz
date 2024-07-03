@@ -10,8 +10,6 @@ export const PasswordRegexValidators = {
 export const PasswordSchema = Yup.string()
   .min(8, 'Password is too short - should be 8 chars minimum.')
   .matches(PasswordRegexValidators.RequiredNumber, 'Password requires a number')
-  .matches(PasswordRegexValidators.RequiredUpperCase, 'Password requires an uppercase letter')
-  .matches(PasswordRegexValidators.RequiredSymbol, 'Password requires a symbol')
 
 export const EmailSchema = Yup.string().matches(
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
