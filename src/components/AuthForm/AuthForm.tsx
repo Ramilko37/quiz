@@ -26,9 +26,10 @@ interface ISignInForm {
   formType?: 'signup' | 'signin'
   handlePageState: (pageState: PageState) => void
   setAuthorised: React.Dispatch<React.SetStateAction<boolean>>
+  setIsEmailForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const AuthForm = ({ handlePageState, setAuthorised }: ISignInForm) => {
+export const AuthForm = ({ handlePageState, setAuthorised, setIsEmailForm }: ISignInForm) => {
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -58,15 +59,14 @@ export const AuthForm = ({ handlePageState, setAuthorised }: ISignInForm) => {
   const onFacebookLogin = () => {}
 
   async function onSubmit(data: { email: string; password: string }) {
-    // formType === 'signup'
-    //   ? await ApiSignUp(data.name, data.email.trim(), data.password)
-    //   : await ApiSignIn(data.name, data.email.trim(), data.password)
-    console.log('submit')
-    ApiSignUp(data.email.trim(), data.password).then(res => console.log(res, 64))
-    // ApiSignIn(data.email.trim(), data.password).then(() => {
-    //   setAuthorised(true)
-    //   handlePageState(PageState.Quiz)
-    // })
+    await ApiSignUp(data.email.trim(), data.password)
+      .then(res => {
+        if (res?.status === 201) {
+          console.log('success', res)
+          setIsEmailForm(true)
+        }
+      })
+      .catch(err => console.error(err))
   }
 
   React.useEffect(() => {
