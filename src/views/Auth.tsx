@@ -15,7 +15,7 @@ export enum ShowedForm {
 
 interface LoginPageProps {
   authorised: boolean
-  handlePageState: (pageState: PageState) => void
+  handlePageState: (pageState: PageState) => () => void
   setAuthorised: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -28,10 +28,13 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
     await ApiGetVeryficationCode(Number(emailFormValue))
       .then(res => {
         console.log(res, res?.data.payload.refresh_token)
-        localStorage.setItem('token', res?.data.payload.access_token)
-        document.cookie = `refresh_token=[${res?.data.payload.refresh_token}]`
+        localStorage.setItem('token', res?.data.payload.access_token.token)
+        document.cookie = `refresh_token=[${res?.data.payload.refresh_token.token}]`
+        setAuthorised(true)
       })
       .catch(err => console.error(err))
+
+    console.log('page state handled')
   }
 
   const formComponent = useMemo(() => {
@@ -59,8 +62,6 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
       )
     }
   }, [isEmailForm, authorised, handlePageState, setAuthorised])
-
-  console.log(isEmailForm, 38)
 
   return (
     <Flex
@@ -110,7 +111,14 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
 
       <Text display={isEmailForm ? 'flex' : 'none'}>Didn't receive the link? Send again</Text>
 
-      <Button w={'100%'} h={'65px'} color={'#000'} bg={'#fff'} onClick={handleEmailForm}>
+      <Button
+        display={isEmailForm ? 'flex' : 'none'}
+        w={'100%'}
+        h={'65px'}
+        color={'#000'}
+        bg={'#fff'}
+        onClick={handleEmailForm}
+      >
         Agree & Confirm
       </Button>
     </Flex>

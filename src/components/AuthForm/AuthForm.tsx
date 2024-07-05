@@ -59,6 +59,7 @@ export const AuthForm = ({ handlePageState, setAuthorised, setIsEmailForm }: ISi
   const onFacebookLogin = () => {}
 
   async function onSubmit(data: { email: string; password: string }) {
+    console.log('clicked')
     await ApiSignUp(data.email.trim(), data.password)
       .then(res => {
         if (res?.status === 201) {
@@ -102,11 +103,11 @@ export const AuthForm = ({ handlePageState, setAuthorised, setIsEmailForm }: ISi
       />
       <Flex w={'100%'} direction={'column'} maxW={'500px'} gap={'16px'} align={'center'}>
         {/* <Input name={'name'} placeholder={'Name'} onChange={formik.handleChange} margin={'24px 0 10px'} /> */}
-        <Input name={'email'} placeholder={'Email'} onChange={formik.handleChange} marginBottom={'10px'} />
+        <Input name={'email'} placeholder={'Email address'} onChange={formik.handleChange} marginBottom={'10px'} />
         <Input
           type={'password'}
           name={'password'}
-          placeholder={'Create password'}
+          placeholder={'Password (6+ characters)'}
           onChange={formik.handleChange}
           marginBottom={'10px'}
         />
@@ -125,7 +126,6 @@ export const AuthForm = ({ handlePageState, setAuthorised, setIsEmailForm }: ISi
             w={'100%'}
             type={'submit'}
             onClick={() => handlePageState(PageState.Welcome)}
-            isDisabled={emptyField}
             bgColor={'rgb(52, 53, 65)'}
             p={'10px 50px 10px 50px'}
             borderRadius={'18px'}

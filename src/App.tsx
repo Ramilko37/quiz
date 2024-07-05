@@ -1,14 +1,14 @@
 import { Flex } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import { Onboarbing } from './views/Onboarbing'
 import { Welcome } from './views/Welcome'
 
-import { ApiGetRefreshToken, ApiGetSurvey } from './api/api'
+import { ApiGetRefreshToken } from './api/api'
 import { Footer } from './components/Footer/Footer'
 import { Header } from './components/Header/Header'
 import { Survey } from './components/Survey'
-import { surveyData } from './data'
+import { quizData } from './data'
 import Auth from './views/Auth'
 import { Forms } from './views/Forms'
 
@@ -21,15 +21,21 @@ export enum PageState {
 }
 
 function App() {
-  const [pageState, setPageState] = useState<PageState>(PageState.Auth)
-  const [data, setData] = useState(surveyData)
-  const [authorised, setAuthorised] = useState<boolean>(true)
+  const [pageState, setPageState] = useState<PageState>(PageState.Welcome)
+  const [data, setData] = useState(quizData)
+  const [authorised, setAuthorised] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (authorised) {
+      setPageState(PageState.Quiz)
+    }
+  }, [authorised])
 
   const handlePageState = (pageState: PageState) => () => {
     setPageState(pageState)
   }
 
-  const content = () => {
+  const content = useMemo(() => {
     switch (pageState) {
       case PageState.Welcome:
         return <Welcome handlePageState={handlePageState} />
@@ -40,21 +46,23 @@ function App() {
       case PageState.Forms:
         return <Forms handlePageState={handlePageState} />
       case PageState.Quiz:
-        return <Survey stepData={data} />
+        return <Survey quizData={quizData} />
+      default:
+        return <></>
     }
-  }
+  }, [pageState])
 
-  useEffect(() => {
-    let token = localStorage.getItem('token')
-    if (authorised && token) {
-      console.log(token)
-      ApiGetSurvey(token).then(res => {
-        console.log(res, 51)
-        setData(res?.data.payload)
-        setPageState(PageState.Quiz)
-      })
-    }
-  }, [authorised])
+  // useEffect(() => {
+  //   let token = localStorage.getItem('token')
+  //   if (authorised && token) {
+  //     console.log(token)
+  //     ApiGetSurvey(token).then(res => {
+  //       console.log(res, 51)
+  //       setData(res?.data.payload)
+  //       setPageState(PageState.Quiz)
+  //     })
+  //   }
+  // }, [authorised])
 
   useEffect(() => {
     setInterval(() => {
@@ -71,12 +79,20 @@ function App() {
     }
   })
 
-  console.log(data, 50)
+  console.log(pageState, 50)
 
   return (
-    <Flex direction={'column'} w={'100%'} h={'100dvh'} background={'BgColor'} justify={'center'} alignItems={'center'}>
+    <Flex
+      direction={'column'}
+      w={'100%'}
+      h={'100dvh'}
+      background={'#091223'}
+      justify={'center'}
+      alignItems={'center'}
+      overflow={'scroll'}
+    >
       {pageState === PageState.Welcome && <Header />}
-      {content()}
+      {content}
       {pageState === PageState.Welcome && <Footer />}
     </Flex>
   )
