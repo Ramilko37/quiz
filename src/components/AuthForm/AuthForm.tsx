@@ -145,9 +145,7 @@ export const AuthForm = ({ handlePageState, setAuthorised, setIsEmailForm }: ISi
             color={'#000'}
             opacity={'1!important'}
             onClick={() => {
-              // formik.handleSubmit()
-              console.log('here')
-              setAuthorised(true)
+              formik.handleSubmit()
             }}
             // isDisabled={emptyField}
             h={'65px'}

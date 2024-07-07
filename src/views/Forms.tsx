@@ -15,7 +15,7 @@ export enum ShowedForm {
 }
 
 interface IFormsPageProps {
-  handlePageState: (pageState: PageState) => void
+  setPageState: React.Dispatch<React.SetStateAction<PageState>>
 }
 
 enum FormSteps {
@@ -47,8 +47,8 @@ const languagePlaceholders = [
   'Sixth Language',
 ]
 
-export const Forms = ({ handlePageState }: IFormsPageProps) => {
-  const [formStep, setFormStep] = useState<FormSteps>(FormSteps.NameSurname)
+export const Forms = ({ setPageState }: IFormsPageProps) => {
+  const [formStep, setFormStep] = useState<FormSteps>(0)
   const [formValue, setFormValue] = useState<string>('')
   const [formData, setFormData] = useState<IFormData>({
     name: '',
@@ -196,6 +196,8 @@ export const Forms = ({ handlePageState }: IFormsPageProps) => {
             </Button>
           </Flex>
         )
+      default:
+        return <></>
     }
   }, [formStep, languageSelectComponent])
 
@@ -204,6 +206,12 @@ export const Forms = ({ handlePageState }: IFormsPageProps) => {
   }
 
   const handleNext = () => {
+    console.log(formStep, 207)
+    if (formStep === 3) {
+      console.log('here i am')
+      localStorage.setItem('formsData', JSON.stringify(formData))
+      setPageState(PageState.Quiz)
+    }
     setFormStep(formStep + 1)
   }
 
