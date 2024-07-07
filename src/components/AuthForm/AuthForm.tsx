@@ -67,7 +67,9 @@ export const AuthForm = ({ handlePageState, setAuthorised, setIsEmailForm }: ISi
           setIsEmailForm(true)
         }
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        console.error(err)
+      })
   }
 
   React.useEffect(() => {
@@ -133,6 +135,7 @@ export const AuthForm = ({ handlePageState, setAuthorised, setIsEmailForm }: ISi
           />
 
           <Button
+            disabled={false}
             variant={'primary'}
             children={'Next'}
             marginBottom={'24px'}
@@ -142,7 +145,9 @@ export const AuthForm = ({ handlePageState, setAuthorised, setIsEmailForm }: ISi
             color={'#000'}
             opacity={'1!important'}
             onClick={() => {
-              formik.handleSubmit()
+              // formik.handleSubmit()
+              console.log('here')
+              setAuthorised(true)
             }}
             // isDisabled={emptyField}
             h={'65px'}

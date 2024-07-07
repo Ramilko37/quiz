@@ -21,13 +21,13 @@ export enum PageState {
 }
 
 function App() {
-  const [pageState, setPageState] = useState<PageState>(PageState.Welcome)
+  const [pageState, setPageState] = useState<PageState>(PageState.Forms)
   const [data, setData] = useState(quizData)
   const [authorised, setAuthorised] = useState<boolean>(false)
 
   useEffect(() => {
     if (authorised) {
-      setPageState(PageState.Quiz)
+      setPageState(PageState.Forms)
     }
   }, [authorised])
 

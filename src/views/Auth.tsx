@@ -32,7 +32,9 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
         document.cookie = `refresh_token=[${res?.data.payload.refresh_token.token}]`
         setAuthorised(true)
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        console.error(err)
+      })
 
     console.log('page state handled')
   }
