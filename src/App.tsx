@@ -20,7 +20,7 @@ export enum PageState {
 }
 
 function App() {
-  const [pageState, setPageState] = useState<PageState>(PageState.Forms)
+  const [pageState, setPageState] = useState<PageState>(PageState.Welcome)
   const [data, setData] = useState(quizData)
   const [authorised, setAuthorised] = useState<boolean>(false)
 
