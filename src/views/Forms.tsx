@@ -227,6 +227,7 @@ export const Forms = ({ setPageState }: IFormsPageProps) => {
         gap={'40px'}
         align={'center'}
         boxSizing={'border-box'}
+        p={'24px'}
       >
         <HStack w={'100%'} justifyContent={'flex-start'} mt={'40px'}>
           <Image alignItems={'left'} w={'102px'} h={'44px'} src={QuizLogo} />

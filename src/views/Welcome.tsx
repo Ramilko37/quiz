@@ -8,7 +8,7 @@ interface IWelcomeProps {
 
 export const Welcome = ({ handlePageState }: IWelcomeProps) => {
   return (
-    <Flex w={'100%'} h={'100dvh'} direction={'column'}>
+    <Flex w={'100%'} h={'100dvh'} direction={'column'} p={{ base: '45px', md: '90px' }} pos={'relative'}>
       <Flex
         position={'absolute'}
         top={0}
@@ -22,13 +22,13 @@ export const Welcome = ({ handlePageState }: IWelcomeProps) => {
       />
 
       <Flex
-        h={'100%'}
+        h={'100dvh'}
         alignItems={'center'}
         textAlign={'center'}
         justify={'center'}
         zIndex={100}
         direction={'column'}
-        w={'80%'}
+        w={{ base: '100%', md: '80%' }}
         m={'auto'}
         gap={'20px'}
       >
@@ -48,7 +48,7 @@ export const Welcome = ({ handlePageState }: IWelcomeProps) => {
           variant={'primary'}
           borderRadius={'10px'}
           mt={'60px'}
-          w={'250px'}
+          w={{ base: '100%', md: '250px' }}
           h={'65px'}
         >
           Join

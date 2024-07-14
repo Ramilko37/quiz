@@ -68,7 +68,7 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
   return (
     <Flex
       direction={'column'}
-      w={'500px'}
+      w={{ base: '90%', md: '500px' }}
       h={'100%'}
       gap={'40px'}
       justify={'center'}

@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Text } from '@chakra-ui/react'
+import { Button, Flex, Image, Text, useBreakpointValue } from '@chakra-ui/react'
 import { PageState } from 'src/App'
 import QuizLogo from '../images/QuizLogo.svg'
 import onboardingImg from '../images/onboardingImg.jpg'
@@ -8,16 +8,43 @@ interface IOnboarbingProps {
 }
 
 export const Onboarbing = ({ handlePageState }: IOnboarbingProps) => {
+  const isMobile = useBreakpointValue({ base: true, md: false })
+  const TextContent = !isMobile ? (
+    <Text color={'#fff'}>
+      <Text color={'#DD7C66'} as={'span'}>
+        Every week
+      </Text>
+      , we will provide you with the opportunity to meet an interesting person, chosen from our community members. ✨ 
+      To participate in these meetings, please answer some questions. This will allow us to match you with the relevant
+      professionals within the community.  We're here to{' '}
+      <Text color={'#DD7C66'} as={'span'}>
+        champion your career aspirations
+      </Text>{' '}
+      and make your professional advancement a reality!
+    </Text>
+  ) : (
+    <Text color={'#fff'}>
+      <Text color={'#DD7C66'} as={'span'}>
+        Every week
+      </Text>
+      , we will provide you with the opportunity to meet an interesting person, chosen from our community members. ✨ 
+      We're here to{' '}
+      <Text color={'#DD7C66'} as={'span'}>
+        champion your career aspirations
+      </Text>{' '}
+      and make your professional advancement a reality!
+    </Text>
+  )
+
   return (
     <Flex
       w={'100%'}
-      h={'100dvh'}
       direction={'column'}
       justify={'space-between'}
       alignItems={'center'}
-      p={'90px 0 90px'}
+      p={{ base: '45px', md: '90px 0 90px' }}
       gap={'40px'}
-      maxW={'700px'}
+      maxW={{ base: '80vw', md: '700px' }}
     >
       <Image w={'176px'} h={'76px'} src={QuizLogo} />
       <Text fontSize={'14px'} fontWeight={600} color={'#fff'}>
@@ -25,19 +52,13 @@ export const Onboarbing = ({ handlePageState }: IOnboarbingProps) => {
         professionals!
       </Text>
       <Image src={onboardingImg} w={'265px'} h={'266px'} />
-      <Text color={'#fff'}>
-        <Text color={'#DD7C66'} as={'span'}>
-          Every week
-        </Text>
-        , we will provide you with the opportunity to meet an interesting person, chosen from our community members. ✨ 
-        To participate in these meetings, please answer some questions. This will allow us to match you with the
-        relevant professionals within the community.  We're here to{' '}
-        <Text color={'#DD7C66'} as={'span'}>
-          champion your career aspirations
-        </Text>{' '}
-        and make your professional advancement a reality!
-      </Text>
-      <Button onClick={handlePageState(PageState.Auth)} w={'250px'} h={'65px'} variant={'secondary'}>
+      {TextContent}
+      <Button
+        onClick={handlePageState(PageState.Auth)}
+        w={{ base: '100%', md: '250px' }}
+        h={'65px'}
+        variant={'secondary'}
+      >
         Let's go! 🚀
       </Button>
     </Flex>

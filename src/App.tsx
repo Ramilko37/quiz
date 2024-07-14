@@ -1,10 +1,12 @@
 import { Flex } from '@chakra-ui/react'
 import { useEffect, useMemo, useState } from 'react'
+import { createPortal } from 'react-dom'
 import './App.css'
 import { ApiGetRefreshToken, ApiGetSurvey } from './api/api'
 import { Footer } from './components/Footer/Footer'
 import { Header } from './components/Header/Header'
-import { Survey } from './components/Survey'
+import { HeaderMenu } from './components/HeaderMenu/HeaderMenu'
+import { Quiz } from './components/Quiz'
 import { quizData } from './data'
 import Auth from './views/Auth'
 import { Forms } from './views/Forms'
@@ -23,6 +25,7 @@ function App() {
   const [pageState, setPageState] = useState<PageState>(PageState.Welcome)
   const [data, setData] = useState(quizData)
   const [authorised, setAuthorised] = useState<boolean>(false)
+  const [headerMenuOpen, setHeaderMenuOpen] = useState<boolean>(false)
 
   useEffect(() => {
     if (authorised) {
@@ -46,7 +49,7 @@ function App() {
       case PageState.Forms:
         return <Forms setPageState={setPageState} />
       case PageState.Quiz:
-        return <Survey quizData={quizData} />
+        return <Quiz quizData={quizData} />
       default:
         return <></>
     }
@@ -79,22 +82,30 @@ function App() {
     }
   })
 
-  console.log(pageState, 50)
+  const handleHeaderMenuOpen = () => {
+    setHeaderMenuOpen(true)
+  }
+
+  console.log(headerMenuOpen)
 
   return (
-    <Flex
-      direction={'column'}
-      w={'100%'}
-      h={'100dvh'}
-      background={'#091223'}
-      justify={'center'}
-      alignItems={'center'}
-      overflow={'scroll'}
-    >
-      {pageState === PageState.Welcome && <Header />}
-      {content}
-      {pageState === PageState.Welcome && <Footer />}
-    </Flex>
+    <>
+      <Flex
+        direction={'column'}
+        w={'100%'}
+        h={{ base: '100dvh', md: '' }}
+        background={'#091223'}
+        justify={'center'}
+        alignItems={'center'}
+        overflow={'scroll'}
+      >
+        {pageState === PageState.Welcome && <Header handleHeaderMenuOpen={handleHeaderMenuOpen} />}
+        {content}
+        {pageState === PageState.Welcome && <Footer />}
+      </Flex>
+
+      {headerMenuOpen && createPortal(<HeaderMenu onClose={() => setHeaderMenuOpen(false)} />, document.body)}
+    </>
   )
 }
 

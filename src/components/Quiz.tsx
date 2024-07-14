@@ -36,7 +36,7 @@ enum SlugType {
   Finish = 'finish',
 }
 
-export const Survey = ({ quizData }: ISurveyProps): any => {
+export const Quiz = ({ quizData }: ISurveyProps): any => {
   const [currentStep, setCurrentStep] = useState(0)
   const [stepData, setStepData] = useState<QuizQuestion>(quizData[0])
   const [inputValue, setInputValue] = useState('')
@@ -229,6 +229,7 @@ export const Survey = ({ quizData }: ISurveyProps): any => {
         gap={'40px'}
         align={'center'}
         boxSizing={'border-box'}
+        p={'24px'}
       >
         <HStack w={'100%'} justifyContent={'flex-start'} mt={'40px'}>
           <Image alignItems={'left'} w={'102px'} h={'44px'} src={QuizLogo} />

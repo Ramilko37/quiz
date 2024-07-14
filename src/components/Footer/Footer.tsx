@@ -1,11 +1,11 @@
-import { Flex, Link, Image, Text } from '@chakra-ui/react'
-import React from 'react'
-import QuizLogo from '../../images/QuizLogo.svg'
+import { Flex, Image, Link, Text } from '@chakra-ui/react'
 import { IoChatboxEllipses } from 'react-icons/io5'
+import QuizLogo from '../../images/QuizLogo.svg'
 
 export const Footer = () => {
   return (
     <Flex
+      display={{ base: 'none', md: 'flex' }}
       bgColor={'#091223'}
       zIndex={200}
       w={'100%'}
