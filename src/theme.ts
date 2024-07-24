@@ -42,6 +42,7 @@ const styles = {
       // bg: mode('white', 'gray.800')(props),
       touchAction: 'pan-x pan-y !important', // Disable pinch-zoom and other gestures
     },
+
     a: {
       WebkitAppearance: 'none',
       WebkitTapHighlightColor: 'transparent',

@@ -20,7 +20,8 @@ export const Header = ({ handleHeaderMenuOpen }: IHeaderProps) => {
       justify={'space-between'}
       bg={'transparent'}
     >
-      <Image w={'102px'} h={'44px'} src={QuizLogo} />
+      <Image w={'176px'} h={'76px'} src={QuizLogo} />
+
       {isMobile ? (
         <Button bg={'transparent'} onClick={handleHeaderMenuOpen}>
           <HeaderMenuIcon />

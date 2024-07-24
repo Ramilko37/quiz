@@ -1,4 +1,4 @@
-import { Button, Flex, HStack, Image, Input, Text, VStack } from '@chakra-ui/react'
+import { Button, Flex, HStack, Image, PinInput, PinInputField, Text, VStack } from '@chakra-ui/react'
 import { useMemo, useState } from 'react'
 import { PageState } from 'src/App'
 import { ApiGetVeryficationCode } from 'src/api/api'
@@ -20,8 +20,9 @@ interface LoginPageProps {
 }
 
 export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPageProps) => {
-  const [isEmailForm, setIsEmailForm] = useState<boolean>(false)
+  const [isEmailForm, setIsEmailForm] = useState<boolean>(true)
   const [emailFormValue, setEmailFormValue] = useState<string>('')
+  const [numberInput, setNumberInput] = useState('')
 
   const handleEmailForm = async () => {
     console.log(emailFormValue)
@@ -52,14 +53,23 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
     } else {
       return (
         <Flex w={'100%'} direction={'column'} maxW={'500px'} gap={'16px'} align={'center'} textAlign={'left'}>
-          <Input
-            maxLength={6}
-            type="number"
-            placeholder="- - - - - -"
-            _placeholder={{ textAlign: 'center' }}
-            textAlign={'center'}
-            onChange={e => setEmailFormValue(e.target.value)}
-          />
+          <Flex
+            w={'100%'}
+            borderRadius={'20px'}
+            h={'64px'}
+            bgColor={'#322C3B'}
+            justify={'center'}
+            alignItems={'center'}
+          >
+            <PinInput otp type="alphanumeric" onChange={e => setEmailFormValue(e)} placeholder="-">
+              <PinInputField color={'#A3A3A3'} border={'none'} placeholder="-" />
+              <PinInputField color={'#A3A3A3'} border={'none'} />
+              <PinInputField color={'#A3A3A3'} border={'none'} />
+              <PinInputField color={'#A3A3A3'} border={'none'} />
+              <PinInputField color={'#A3A3A3'} border={'none'} />
+              <PinInputField color={'#A3A3A3'} border={'none'} />
+            </PinInput>
+          </Flex>
         </Flex>
       )
     }
@@ -70,21 +80,21 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
       direction={'column'}
       w={{ base: '90%', md: '500px' }}
       h={'100%'}
-      gap={'40px'}
+      gap={'60px'}
       justify={'center'}
       align={'flex-start'}
       position={'relative'}
     >
       <HStack justify={'flex-start'}>
-        <Image alignItems={'flex-start'} w={'102px'} h={'44px'} src={QuizLogo} />
+        <Image alignSelf={'baseline'} w={'176px'} h={'76px'} src={QuizLogo} />
       </HStack>
       <Flex w={'100%'} direction={'column'} gap={'16px'}>
-        <Text fontWeight={600} fontSize={'20px'} color={'#fff'}>
+        <Text fontFamily={'Montserrat'} fontWeight={600} fontSize={'20px'} color={'#fff'}>
           {isEmailForm ? 'Confirm your Email' : 'Join Networky, Expand Your Horizons!'}
         </Text>
         {isEmailForm && (
           <Text color={'#fff'}>
-            Type in the code we sent to <a href="mailto:golikart@gmail.com">golikart@gmail.com</a>. Edit email
+            Type in the code we sent to <a href={`mailto:${emailFormValue}`}>{emailFormValue}</a>. Edit email
           </Text>
         )}
       </Flex>
@@ -97,10 +107,11 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
         p={'16px'}
         gap={'16px'}
         alignItems={'flex-start'}
+        textAlign={'left'}
       >
         <Image src={PrivacyLogo} />
-        <VStack>
-          <Text fontWeight={400} fontSize={'16px'} color={'#fff'}>
+        <VStack alignItems={'flex-start'}>
+          <Text w={'100%'} fontWeight={800} fontSize={'16px'} color={'#fff'}>
             Your privacy is important
           </Text>
           <Text fontWeight={400} fontSize={'16px'} color={'#fff'}>
@@ -111,7 +122,13 @@ export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPagePr
         </VStack>
       </Flex>
 
-      <Text display={isEmailForm ? 'flex' : 'none'}>Didn't receive the link? Send again</Text>
+      <Text color={'#fff'} display={isEmailForm ? 'flex' : 'none'} fontWeight={600}>
+        Didn't receive the link? &nbsp;{' '}
+        <Text as={'span'} textDecor={'underline'}>
+          {' '}
+          Send again{' '}
+        </Text>
+      </Text>
 
       <Button
         display={isEmailForm ? 'flex' : 'none'}

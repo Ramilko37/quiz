@@ -15,7 +15,7 @@ export const Footer = () => {
       justify={'space-between'}
     >
       <Flex direction={'column'} w={'30%'} gap={'35px'}>
-        <Image w={'176px'} h={'76px'} src={QuizLogo} />
+        <Image w={'102px'} h={'44px'} src={QuizLogo} />
         <Text fontSize={'16px'} color={'#fff'}>
           Networky AI Chatbot for networking: <br /> enhancing connections within companies, communities, and events
         </Text>

@@ -22,7 +22,7 @@ export enum PageState {
 }
 
 function App() {
-  const [pageState, setPageState] = useState<PageState>(PageState.Welcome)
+  const [pageState, setPageState] = useState<PageState>(PageState.Auth)
   const [data, setData] = useState(quizData)
   const [authorised, setAuthorised] = useState<boolean>(false)
   const [headerMenuOpen, setHeaderMenuOpen] = useState<boolean>(false)
@@ -93,7 +93,7 @@ function App() {
       <Flex
         direction={'column'}
         w={'100%'}
-        h={{ base: '100dvh', md: '' }}
+        h={'100dvh'}
         background={'#091223'}
         justify={'center'}
         alignItems={'center'}

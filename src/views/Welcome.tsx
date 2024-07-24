@@ -8,7 +8,7 @@ interface IWelcomeProps {
 
 export const Welcome = ({ handlePageState }: IWelcomeProps) => {
   return (
-    <Flex w={'100%'} h={'100dvh'} direction={'column'} p={{ base: '45px', md: '90px' }} pos={'relative'}>
+    <Flex w={'100%'} h={'100%'} direction={'column'} p={{ base: '45px', md: '90px' }} pos={'relative'}>
       <Flex
         position={'absolute'}
         top={0}
@@ -40,7 +40,7 @@ export const Welcome = ({ handlePageState }: IWelcomeProps) => {
           in the FP&A Space
         </Heading>
         <Heading fontSize={'23px'} color={'#fff'} as={'h3'}>
-          Connect, Collaborate, and Achieve with Leading FP&A Professionals
+          Connect, Collaborate, and Achieve with 1000+ Leading FP&A Professionals
         </Heading>
 
         <Button
@@ -50,8 +50,13 @@ export const Welcome = ({ handlePageState }: IWelcomeProps) => {
           mt={'60px'}
           w={{ base: '100%', md: '250px' }}
           h={'65px'}
+          sx={{
+            _hover: {
+              opacity: 0.6,
+            },
+          }}
         >
-          Join
+          Join Now
         </Button>
       </Flex>
     </Flex>
