@@ -1,10 +1,10 @@
 import { Button, Flex, HStack, Image, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
 import { HiMagnifyingGlass } from 'react-icons/hi2'
 import Select from 'react-select'
+import { ApiGetLanguages } from 'src/api/api'
 import { PageState } from 'src/App'
-import { languages } from 'src/data'
 import QuizLogo from '../images/QuizLogo.svg'
 
 export enum ShowedForm {
@@ -57,7 +57,8 @@ export const Forms = ({ setPageState }: IFormsPageProps) => {
     location: '',
     languages: [],
   })
-  const [languageSelectComponent, setLanguageSelectComponent] = useState<selectOption[][]>([languages])
+  const [languageSelectComponent, setLanguageSelectComponent] = useState<selectOption[][]>([])
+  const [languages, setlanguages] = useState([])
 
   const handleAddSelectComponent = () => {
     setLanguageSelectComponent(prev => [...prev, languages])
@@ -66,6 +67,14 @@ export const Forms = ({ setPageState }: IFormsPageProps) => {
   const handleSelectValue = (e: any) => {
     setFormData(prev => ({ ...prev, languages: [...prev.languages, e.value] }))
   }
+
+  useEffect(() => {
+    const languages = ApiGetLanguages().then(res => {
+      setlanguages(res?.data)
+    })
+
+    console.log(languages)
+  }, [])
 
   const formComponent = useMemo(() => {
     switch (formStep) {

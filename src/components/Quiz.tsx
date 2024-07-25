@@ -207,7 +207,7 @@ export const Quiz = ({ quizData }: ISurveyProps): any => {
 
         const textData = extractTextFunc()
         return (
-          <Flex margin={'30% auto'} w={'100%'} maxW={'450px'} direction={'column'} gap={'40px'}>
+          <Flex margin={'30% auto'} w={'100%'} maxW={'450px'} h={'100%'} direction={'column'} gap={'40px'}>
             <Text color={'#fff'} fontWeight={700}>
               {stepData.title}
             </Text>
@@ -223,7 +223,7 @@ export const Quiz = ({ quizData }: ISurveyProps): any => {
     <>
       <Flex
         w={'100%'}
-        h={'100%'}
+        h={'100dvh  '}
         direction={'column'}
         maxW={'600px'}
         gap={'40px'}

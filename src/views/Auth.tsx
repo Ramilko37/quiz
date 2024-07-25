@@ -20,7 +20,7 @@ interface LoginPageProps {
 }
 
 export const Auth = ({ authorised, handlePageState, setAuthorised }: LoginPageProps) => {
-  const [isEmailForm, setIsEmailForm] = useState<boolean>(true)
+  const [isEmailForm, setIsEmailForm] = useState<boolean>(false)
   const [emailFormValue, setEmailFormValue] = useState<string>('')
   const [numberInput, setNumberInput] = useState('')
 

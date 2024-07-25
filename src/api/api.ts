@@ -85,3 +85,20 @@ export const ApiGetRefreshToken = async () => {
     console.log(err)
   }
 }
+
+export const ApiGetLanguages = async () => {
+  const token = localStorage.getItem('token')
+  try {
+    const response = await axios.get(`${baseUrl}/v1/user/data/language`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    console.log(response, 100)
+    return response
+  } catch (err) {
+    console.log(err)
+  }
+}
